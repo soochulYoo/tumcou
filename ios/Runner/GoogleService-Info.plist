@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>93139326609-8vkjnva6piqm0f8dvfgc6i2r3bo5264u.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.93139326609-8vkjnva6piqm0f8dvfgc6i2r3bo5264u</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB6y-0FYpO0w3VrtISVoDGfto_7bwDgSag</string>
+	<key>GCM_SENDER_ID</key>
+	<string>93139326609</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.tumcou.tumcou1</string>
+	<key>PROJECT_ID</key>
+	<string>tumcou-e945a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tumcou-e945a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:93139326609:ios:bd5d09ee9a2b1fd1341130</string>
+	<key>DATABASE_URL</key>
+	<string>https://tumcou-e945a.firebaseio.com</string>
+</dict>
+</plist>

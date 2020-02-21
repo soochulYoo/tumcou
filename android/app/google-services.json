@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "93139326609",
+    "firebase_url": "https://tumcou-e945a.firebaseio.com",
+    "project_id": "tumcou-e945a",
+    "storage_bucket": "tumcou-e945a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93139326609:android:df885092f62109e8341130",
+        "android_client_info": {
+          "package_name": "com.tumcou.tumcou1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "93139326609-a5k23staq7dici350dbc65p72548nj1e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqia6gKc1e41dVuSAoOc8921oJNYRG5dM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "93139326609-a5k23staq7dici350dbc65p72548nj1e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "93139326609-8vkjnva6piqm0f8dvfgc6i2r3bo5264u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tumcou.tumcou1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

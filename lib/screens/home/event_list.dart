@@ -13,7 +13,7 @@ class EventList extends StatelessWidget {
               backgroundColor: Colors.lightGreen,
               backgroundImage: AssetImage('assets/coffee_icon.png'),
             ),
-            title: Text('이벤트!!!!!!!!!!'),
+            title: Text('이벤트!'),
             subtitle: Text('진행중인 이벤트'),
           ),
         )

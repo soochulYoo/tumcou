@@ -343,7 +343,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('평가해주세요'),
+          title: Text('평가해주세요!!'),
           content: SingleChildScrollView(
               child: Column(children: <Widget>[
             Row(

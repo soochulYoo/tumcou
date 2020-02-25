@@ -4,17 +4,27 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6e78bb1-52cd-43e2-adb5-47e8edf9f6fa" name="Default Changelist" comment="is it ok????">
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/tumcou1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tumcou1.iml" afterDir="false" />
+    <list default="true" id="f6e78bb1-52cd-43e2-adb5-47e8edf9f6fa" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/44363f6b7d0f31d3805f15d340fe128c/.filecache" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/44363f6b7d0f31d3805f15d340fe128c/.filecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/44363f6b7d0f31d3805f15d340fe128c/app.dill" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/44363f6b7d0f31d3805f15d340fe128c/app.dill" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/44363f6b7d0f31d3805f15d340fe128c/kernel_snapshot.d" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/44363f6b7d0f31d3805f15d340fe128c/kernel_snapshot.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/flutter_build/44363f6b7d0f31d3805f15d340fe128c/kernel_snapshot.stamp" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/flutter_build/44363f6b7d0f31d3805f15d340fe128c/kernel_snapshot.stamp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/home/event_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home/event_list.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tumcou" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/5.6.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/movies.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/movies.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/flutter/debug/flutter_build.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/intermediates/merged_assets/debug/out/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/intermediates/merged_assets/debug/out/flutter_assets/kernel_blob.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/outputs/apk/app.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/apk/app.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/outputs/apk/app.apk.sha1" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/apk/app.apk.sha1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/app/outputs/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/build/app/outputs/apk/debug/app-debug.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/home/event_page/models/cinema.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/home/event_page/models/movie.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home/event_page/models/movie.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +44,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/screens/home/userReview_page.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-562">
+            <state relative-caret-position="7239">
               <caret line="393" column="6" selection-start-line="393" selection-start-column="6" selection-end-line="393" selection-end-column="6" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -46,17 +56,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pubspec.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="41" column="16" lean-forward="true" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+            <state relative-caret-position="779">
+              <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/screens/home/event_list.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/screens/home/event_page/models/movie.dart">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="535">
+              <caret line="40" column="1" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/screens/home/event_list.dart">
+        <entry file="file://$PROJECT_DIR$/assets/movies.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="426">
+              <caret line="128" column="68" selection-start-line="128" selection-start-column="68" selection-end-line="128" selection-end-column="68" />
             </state>
           </provider>
         </entry>
@@ -86,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+            <state relative-caret-position="266">
+              <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -98,7 +126,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/navigation_bar_controller.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-469">
+            <state>
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -109,7 +137,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/membership_page.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-317">
+            <state>
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -174,14 +202,12 @@
         <option value="$PROJECT_DIR$/lib/shared/styles.dart" />
         <option value="$PROJECT_DIR$/lib/event_page.dart" />
         <option value="$PROJECT_DIR$/lib/screens/home/event_page/background_color.dart" />
-        <option value="$PROJECT_DIR$/lib/screens/home/event_page/models/movie.dart" />
         <option value="$PROJECT_DIR$/lib/screens/home/event_page/models/cinema.dart" />
         <option value="$PROJECT_DIR$/lib/screens/home/event_page/offset_transition.dart" />
         <option value="$PROJECT_DIR$/lib/screens/home/event_page/floating_card.dart" />
         <option value="$PROJECT_DIR$/lib/screens/home/event_page/widget/floating_card.dart" />
         <option value="$PROJECT_DIR$/lib/screens/home/event_page/widget/movie_item_card.dart" />
         <option value="$PROJECT_DIR$/lib/screens/home/event_page/widget/star_rating.dart" />
-        <option value="$PROJECT_DIR$/assets/movies.json" />
         <option value="$PROJECT_DIR$/lib/screens/home/event_page/event_page.dart" />
         <option value="$PROJECT_DIR$/lib/navigation_bar_controller.dart" />
         <option value="$PROJECT_DIR$/lib/screens/authenticate/sign_in.dart" />
@@ -196,12 +222,14 @@
         <option value="$PROJECT_DIR$/tumcou/README.md" />
         <option value="$PROJECT_DIR$/tumcou/tumcou/README.md" />
         <option value="$PROJECT_DIR$/lib/screens/home/event_list.dart" />
+        <option value="$PROJECT_DIR$/lib/screens/home/event_page/models/movie.dart" />
+        <option value="$PROJECT_DIR$/assets/movies.json" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-11" />
-    <option name="width" value="1941" />
+    <option name="width" value="1943" />
     <option name="height" value="2102" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -210,12 +238,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="tumcou1" type="b2602c69:ProjectViewProjectNode" />
               <item name="tumcou1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tumcou1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tumcou1" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="tumcou1" type="b2602c69:ProjectViewProjectNode" />
@@ -245,6 +279,23 @@
               <item name="tumcou1" type="b2602c69:ProjectViewProjectNode" />
               <item name="tumcou1" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="screens" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+              <item name="event_page" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tumcou1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tumcou1" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="screens" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+              <item name="event_page" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tumcou1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tumcou1" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -253,12 +304,16 @@
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="shared" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="tumcou1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tumcou1" type="462c0819:PsiDirectoryNode" />
+              <item name="tumcou" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -271,7 +326,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="flutter.settings" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -354,7 +409,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582294162694</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="test1">
+      <created>1582296055118</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1582296055118</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -367,11 +429,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="0" width="1109" height="1201" extended-state="0" />
-    <editor active="true" />
+    <frame x="-6" y="0" width="1110" height="1201" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4990991" visible="true" weight="0.23181377" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4990991" visible="true" weight="0.29166666" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -380,10 +441,10 @@
       <window_info id="Favorites" order="7" sideWeight="0.5009009" side_tool="true" weight="0.22928709" />
       <window_info id="Build Variants" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Dart Analysis" order="0" weight="0.32916668" />
-      <window_info anchor="bottom" id="Run" order="1" sideWeight="0.49752474" weight="0.3249027" />
+      <window_info anchor="bottom" id="Run" order="1" sideWeight="0.49752474" weight="0.32198444" />
       <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.49959967" weight="0.32818532" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.25072324" />
-      <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49757516" visible="true" weight="0.32782102" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="4" sideWeight="0.49757516" visible="true" weight="0.3307393" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50242484" side_tool="true" weight="0.3288889" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32976654" />
       <window_info anchor="bottom" id="Logcat" order="7" weight="0.32823366" />
@@ -432,13 +493,11 @@
     <MESSAGE value="되는건가?" />
     <MESSAGE value="is it ok?" />
     <MESSAGE value="is it ok????" />
-    <option name="LAST_COMMIT_MESSAGE" value="is it ok????" />
+    <MESSAGE value="test1" />
+    <option name="LAST_COMMIT_MESSAGE" value="test1" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/icon/tumbler_icon.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/icon/right-arrow.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -632,20 +691,7 @@
     <entry file="file://$PROJECT_DIR$/lib/models/user.dart">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/movies.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tumcou/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/tumcou/README.md" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -653,13 +699,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tumcou/tumcou/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/tumcou/tumcou/README.md" />
     <entry file="file://$PROJECT_DIR$/lib/screens/home/event_page/event_page.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1393">
@@ -680,12 +720,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tumcou/tumcou1.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/tumcou/tumcou1.iml" />
+    <entry file="file://$PROJECT_DIR$/tumcou/main.dart" />
+    <entry file="file://$PROJECT_DIR$/tumcou/generated_plugin_registrant.dart" />
+    <entry file="file://$PROJECT_DIR$/tumcou/test/widget_test.dart" />
     <entry file="file://$PROJECT_DIR$/lib/screens/home/userReview_page.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-562">
+        <state relative-caret-position="7239">
           <caret line="393" column="6" selection-start-line="393" selection-start-column="6" selection-end-line="393" selection-end-column="6" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -693,16 +734,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tumcou/main.dart">
+    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="779">
+          <caret line="41" column="16" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tumcou/generated_plugin_registrant.dart">
+    <entry file="file://$PROJECT_DIR$/lib/generated_plugin_registrant.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <folding>
@@ -720,26 +759,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tumcou/test/widget_test.dart">
+    <entry file="file://$PROJECT_DIR$/lib/main.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="41" lean-forward="true" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+        <state relative-caret-position="266">
+          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
           <folding>
-            <element signature="e#0#1046#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="41" column="16" lean-forward="true" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/navigation_bar_controller.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-469">
+        <state>
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -748,26 +780,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/membership_page.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-317">
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/generated_plugin_registrant.dart">
-      <provider selected="true" editor-type-id="text-editor">
         <state>
-          <folding>
-            <element signature="e#0#630#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
@@ -777,7 +790,21 @@
     <entry file="file://$PROJECT_DIR$/lib/screens/home/event_list.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/screens/home/event_page/models/movie.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="40" column="1" selection-start-line="40" selection-start-column="1" selection-end-line="40" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/movies.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="426">
+          <caret line="128" column="68" selection-start-line="128" selection-start-column="68" selection-end-line="128" selection-end-column="68" />
         </state>
       </provider>
     </entry>

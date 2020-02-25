@@ -52,13 +52,6 @@ class MovieItemCard extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(
-              left: 24,
-              bottom: 24,
-              child: StarRating(
-                rating: movie.rate.toDouble(),
-                color: Color(0xFFF6C32C),
-              )),
         ],
       ),
     );

@@ -55,7 +55,7 @@ class _EventPageState extends State<EventPage> with TickerProviderStateMixin {
               return Center(
                 child: Text('Loading...'),
               );
-            } else {
+            } else
               if (_backgroundColorAnimation == null) {
                 _backgroundColorAnimation = ColorTween(
                   begin: getColorFromHex(
@@ -123,7 +123,7 @@ class _EventPageState extends State<EventPage> with TickerProviderStateMixin {
                   ],
                 ),
               );
-            }
+
           },
         ));
   }

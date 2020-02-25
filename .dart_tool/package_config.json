@@ -315,13 +315,13 @@
     },
     {
       "name": "syncfusion_flutter_core",
-      "rootUri": "file:///C:/src/flutter/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_core-17.4.50",
+      "rootUri": "file:///C:/src/flutter/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_core-17.4.51",
       "packageUri": "lib/",
       "languageVersion": "2.1"
     },
     {
       "name": "syncfusion_flutter_gauges",
-      "rootUri": "file:///C:/src/flutter/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_gauges-17.4.50-beta",
+      "rootUri": "file:///C:/src/flutter/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/syncfusion_flutter_gauges-17.4.51-beta",
       "packageUri": "lib/",
       "languageVersion": "2.1"
     },
@@ -398,7 +398,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2020-02-21T14:35:49.108626Z",
+  "generated": "2020-02-25T14:14:09.052675Z",
   "generator": "pub",
   "generatorVersion": "2.7.0"
 }

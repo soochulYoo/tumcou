@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tumcou1/screens/home/event_page/models/movie.dart';
 import 'package:tumcou1/screens/home/event_page/widget/floating_card.dart';
-import 'package:tumcou1/screens/home/event_page/widget/star_rating.dart';
+
 
 class MovieItemCard extends StatelessWidget {
   const MovieItemCard(

@@ -1,4 +1,4 @@
-#Tue Feb 25 22:59:01 KST 2020
+#Sat Feb 29 17:19:58 KST 2020
 base.2=C\:\\Users\\SG\\AndroidStudioProjects\\tumcou1\\tumcou1\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes2.dex
 base.1=C\:\\Users\\SG\\AndroidStudioProjects\\tumcou1\\tumcou1\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\out\\classes.dex
 base.0=C\:\\Users\\SG\\AndroidStudioProjects\\tumcou1\\tumcou1\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\out\\classes.dex

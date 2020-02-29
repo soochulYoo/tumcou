@@ -7,6 +7,7 @@ import 'dart:convert' show json;
 import 'package:tumcou1/screens/home/event_page/models/movie.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
 class EventPage extends StatefulWidget {
   const EventPage({Key key}) : super(key: key);
   @override
@@ -70,7 +71,7 @@ class _EventPageState extends State<EventPage> with TickerProviderStateMixin {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      '${currentIndex + 1} from ${snapshot.data.length} of movies',
+                      '${currentIndex + 1} from ${snapshot.data.length} of events',
                       style: TextStyle(color: Color(0xFFFFFFFF)),
                     ),
                     SlideTransition(
@@ -85,8 +86,14 @@ class _EventPageState extends State<EventPage> with TickerProviderStateMixin {
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
                                 onTap: () {
-                                  Navigator.pushNamed(context, 'detailPage',
-                                      arguments: snapshot.data[index]);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => EventDetailPage(
+                                         snapshot.data[index]
+                                        )
+                                    ),
+                                  );
                                 },
                                 onDoubleTap: () {
                                   if (_opacityAnimationController.status ==
@@ -127,10 +134,10 @@ class _EventPageState extends State<EventPage> with TickerProviderStateMixin {
           },
         ));
   }
-
+///여기 밑 부분에서 카드별 데이터를 불러온다 이걸 손보자
   Future<List<Movie>> _getMovies() async {
     String data =
-        await DefaultAssetBundle.of(context).loadString("assets/movies.json");
+        await DefaultAssetBundle.of(context).loadString("assets/events.json");
     List<dynamic> movies = json.decode(data);
     List<Movie> myMovies = [];
     movies.forEach((movie) {
@@ -143,3 +150,27 @@ class _EventPageState extends State<EventPage> with TickerProviderStateMixin {
 
 Color getColorFromHex(String hexColorCode) =>
     Color(int.parse('0xFF$hexColorCode'));
+
+
+class EventDetailPage extends StatelessWidget {
+ // static const String routeName = "/EventDetailPage";
+
+  EventDetailPage(this.movie);
+
+ final Movie movie;
+
+  ///snapshot.data 를 어떻게 받아야할까
+
+  Widget build(BuildContext context) {
+  return Scaffold(
+
+    body: Image.asset(movie.backdropImage,
+         fit: BoxFit.cover,
+      height: double.infinity,
+        width: double.infinity,
+      alignment: Alignment.center,
+    ),
+    );
+}
+}
+

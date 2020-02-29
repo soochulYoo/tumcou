@@ -24,18 +24,18 @@ class Movie {
       this.backgroundColor,
       this.backdropImage);
 
-  Movie.fromJson(Map<String, dynamic> moviesJson) {
+  Movie.fromJson(Map<String, dynamic> eventsJson) {
     Movie (
-      title = moviesJson['title'],
-      duration = moviesJson['duration'],
-      rate = moviesJson['rate'],
-      position = moviesJson['position'],
-      releaseDate = moviesJson['release-date'],
-      shortInfo = moviesJson['short-info'],
-      plot = moviesJson['plot'],
-      posterPath = moviesJson['poster_path'],
-      backgroundColor = moviesJson['backgroundColor'],
-      backdropImage = moviesJson['backdrop_image'],
+      title = eventsJson['title'],
+      duration = eventsJson['duration'],
+      rate = eventsJson['rate'],
+      position = eventsJson['position'],
+      releaseDate = eventsJson['release-date'],
+      shortInfo =eventsJson['short-info'],
+      plot = eventsJson['plot'],
+      posterPath = eventsJson['poster_path'],
+      backgroundColor = eventsJson['backgroundColor'],
+      backdropImage = eventsJson['backdrop_image'],
     );
   }
 }

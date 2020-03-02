@@ -106,6 +106,8 @@ class DatabaseService {
         .map(_cafeFromSnapshot);
   }
 }
+
+
 //
 //  // brew list from snapshot
 //  List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot) {

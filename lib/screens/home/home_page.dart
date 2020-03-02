@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_flutter/barcode_flutter.dart';
 import 'package:tumcou1/membership_page.dart';
@@ -15,6 +16,7 @@ import 'package:tumcou1/services/database.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tumcou1/shared/loading.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key key}) : super(key: key);
@@ -89,7 +91,10 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-
+//var storage = firebase.storage();
+ //var httpsReference = storage.refFromURL('https://tumcou-e945a.firebaseio.com');
+   //  var gsReference = storage.refFromURL('gs://tumcou-e945a.appspot.com/cardimage');
+/// firebase url을 통해 이미지를 불러오고 싶은데 방법을 잘 모르겟다
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
@@ -302,15 +307,21 @@ class _MyHomePageState extends State<MyHomePage> {
                           ],
                         ),
                       )),
+                  ///여기를 만지자  cardflip 효과를 넣어주자  슬라이딩 기능이랑
+                  ///gs://tumcou-e945a.appspot.com/cardimage
                   Flexible(
                     flex: 5,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: FittedBox(
-                        child: Image.asset('assets/card/card1.png'),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
+                    child: new Swiper(
+                      itemBuilder: (BuildContext context, int index) {
+                        return new Image.network(
+                            'https://tumcou-e945a.firebaseio.com',
+                          fit: BoxFit.fill
+                        );
+                      },
+                      itemCount: 2,
+                      itemWidth: 300.0,
+                      layout: SwiperLayout.STACK,
+                    )
                   ),
                   Flexible(
                       flex: 2,

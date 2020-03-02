@@ -6,7 +6,8 @@ import 'package:tumcou1/screens/home/event_page/widget/movie_item_card.dart';
 import 'dart:convert' show json;
 import 'package:tumcou1/screens/home/event_page/models/movie.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class EventPage extends StatefulWidget {
   const EventPage({Key key}) : super(key: key);
@@ -16,6 +17,10 @@ class EventPage extends StatefulWidget {
 
 class _EventPageState extends State<EventPage> with TickerProviderStateMixin {
   int currentIndex = 0;
+
+  final String apiURL ='https://tumcou-e945a.firebaseio.com';
+
+  ///위의 주소가 있어야 이미지가 로딩된다
 
   AnimationController _opacityAnimationController;
   AnimationController _animationController;
@@ -86,15 +91,12 @@ class _EventPageState extends State<EventPage> with TickerProviderStateMixin {
                             itemBuilder: (BuildContext context, int index) {
                               return GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => EventDetailPage(
-                                         snapshot.data[index]
-                                        )
-                                    ),
-                                  );
-                                },
+                                  Navigator.push(context,
+                                      MaterialPageRoute<void>(
+                                    builder: (BuildContext context) {
+                                        return EventDetailPage();
+                                    }
+                                  ));},
                                 onDoubleTap: () {
                                   if (_opacityAnimationController.status ==
                                       AnimationStatus.completed) {
@@ -136,6 +138,7 @@ class _EventPageState extends State<EventPage> with TickerProviderStateMixin {
   }
 ///여기 밑 부분에서 카드별 데이터를 불러온다 이걸 손보자
   Future<List<Movie>> _getMovies() async {
+    var response = await http.get(apiURL);
     String data =
         await DefaultAssetBundle.of(context).loadString("assets/events.json");
     List<dynamic> movies = json.decode(data);
@@ -152,25 +155,31 @@ Color getColorFromHex(String hexColorCode) =>
     Color(int.parse('0xFF$hexColorCode'));
 
 
-class EventDetailPage extends StatelessWidget {
- // static const String routeName = "/EventDetailPage";
+class EventDetailPage extends StatefulWidget {
+  const EventDetailPage ({Key key, this.movie}) : super (key: key) ;
+  final Movie movie;
+  @override
+  _EventDetailPageState createState() => _EventDetailPageState(movie);
+}
 
-  EventDetailPage(this.movie);
 
- final Movie movie;
 
+class _EventDetailPageState extends State<EventDetailPage> {
+//  static const String routeName = "/EventDetailPage";
+  final Movie movie;
+  _EventDetailPageState(this.movie);
   ///snapshot.data 를 어떻게 받아야할까
+  @override
+    Widget build (BuildContext context) {
+      return Scaffold (
+        body: Image.network (movie.backdropImage,
+          fit: BoxFit.cover,
+          height: double.negativeInfinity,
+          width: double.infinity,
+          alignment: Alignment.center,
+        ),
+      );
+    }
+  }
 
-  Widget build(BuildContext context) {
-  return Scaffold(
-
-    body: Image.asset(movie.backdropImage,
-         fit: BoxFit.cover,
-      height: double.infinity,
-        width: double.infinity,
-      alignment: Alignment.center,
-    ),
-    );
-}
-}
 

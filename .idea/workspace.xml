@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6e78bb1-52cd-43e2-adb5-47e8edf9f6fa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/home/event_list.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/home/home_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home/home_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/services/database.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/services/database.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,8 +48,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/screens/home/home_page.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="94" column="6" lean-forward="true" selection-start-line="94" selection-start-column="6" selection-end-line="94" selection-end-column="40" />
+            <state relative-caret-position="-1076">
+              <caret line="105" column="77" lean-forward="true" selection-start-line="105" selection-start-column="77" selection-end-line="105" selection-end-column="77" />
               <folding>
                 <element signature="e#0#54#0" expanded="true" />
               </folding>
@@ -69,7 +61,7 @@
         <entry file="file://$PROJECT_DIR$/android/app/google-services.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="57">
-              <caret line="3" column="56" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="56" />
+              <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -380,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583153081234</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="아직 새 창 불러오기는 구현 못했음">
+      <created>1583160871888</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1583160871889</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -431,7 +430,8 @@
     <MESSAGE value="is it ok????" />
     <MESSAGE value="test1" />
     <MESSAGE value="아직 새 창 불러오기는 구현 못했음" />
-    <option name="LAST_COMMIT_MESSAGE" value="아직 새 창 불러오기는 구현 못했음" />
+    <MESSAGE value="아직 새 창 불러오기는 구현 못했음&#10;추가로 홈 화면 편집을 했으나 창이 안뜸.." />
+    <option name="LAST_COMMIT_MESSAGE" value="아직 새 창 불러오기는 구현 못했음&#10;추가로 홈 화면 편집을 했으나 창이 안뜸.." />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="editorHistoryManager">
@@ -718,14 +718,14 @@
     <entry file="file://$PROJECT_DIR$/android/app/google-services.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
-          <caret line="3" column="56" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="56" />
+          <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/screens/home/home_page.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="94" column="6" lean-forward="true" selection-start-line="94" selection-start-column="6" selection-end-line="94" selection-end-column="40" />
+        <state relative-caret-position="-1076">
+          <caret line="105" column="77" lean-forward="true" selection-start-line="105" selection-start-column="77" selection-end-line="105" selection-end-column="77" />
           <folding>
             <element signature="e#0#54#0" expanded="true" />
           </folding>

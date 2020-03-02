@@ -21,37 +21,12 @@ class MovieItemCard extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Positioned.fill(
-            child: Hero(
-              tag: movie.title,
+
+             // tag: movie.title,
               child: Image.network(
                 movie.posterPath,
                 fit: BoxFit.cover,
               ),
-            ),
-          ),
-          ///이미지를 url화 시키자
-          Positioned.fill(
-            top: cardSize - 176,
-            child: Container(
-              color: Color(0xEEFFFFFF),
-            ),
-          ),
-          Positioned(
-            left: 24,
-            bottom: 92,
-            child: Text(
-              movie.title,
-            ),
-          ),
-          Positioned(
-            left: 24,
-            bottom: 56,
-            child: Text(
-              movie.releaseDate,
-              style: TextStyle(
-                fontStyle: FontStyle.normal,
-              ),
-            ),
           ),
         ],
       ),

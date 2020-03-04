@@ -179,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
               body: Column(
                 children: <Widget>[
                   Flexible(
-                      flex: 5,
+                      flex: 6,
                       child: Container(
                         color: Theme.of(context).primaryColor,
                         child: Column(
@@ -187,9 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Flexible(
                               flex: 1,
                               child: Container(
-                                margin: EdgeInsets.only(top: 10),
                                 color: Theme.of(context).secondaryHeaderColor,
-                                height: 40,
                                 child: Center(
                                     child: Text(
                                   "#텀블러  #친환경  #텀쿠  #플라스틱프리",
@@ -198,102 +196,12 @@ class _MyHomePageState extends State<MyHomePage> {
                               ),
                             ),
                             Flexible(
-                              flex: 6,
+                              flex: 8,
                               child: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Container(
-                                  color: Colors.green[50],
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Flexible(
-                                        flex: 2,
-                                        child: Padding(
-                                          padding: EdgeInsets.all(20.0),
-                                          child: Container(
-                                              child: Image.asset(
-                                                  'assets/icon/cafe.png')),
-                                        ),
-                                      ),
-                                      Flexible(
-                                          flex: 1,
-                                          child: Center(
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
-                                              children: <Widget>[
-                                                Spacer(flex: 2),
-                                                RotationTransition(
-                                                  turns: AlwaysStoppedAnimation(
-                                                      -30 / 360),
-                                                  child: Container(
-                                                      height: 60,
-                                                      child: Image.asset(
-                                                          "assets/icon/right-arrow.png")),
-                                                ),
-                                                Spacer(flex: 1),
-                                                RotationTransition(
-                                                  turns: AlwaysStoppedAnimation(
-                                                      30 / 360),
-                                                  child: Container(
-                                                      height: 60,
-                                                      child: Image.asset(
-                                                          "assets/icon/right-arrow.png")),
-                                                ),
-                                                Spacer(flex: 2),
-                                              ],
-                                            ),
-                                          )),
-                                      Flexible(
-                                          flex: 2,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: <Widget>[
-                                              Container(
-                                                height: 90,
-                                                child: Stack(children: <Widget>[
-                                                  Center(
-                                                    child: FittedBox(
-                                                      child: Image.asset(
-                                                          'assets/icon/straw.png'),
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                  ),
-                                                  Center(
-                                                    child: Container(
-                                                      height: 70,
-                                                      child: Image.asset(
-                                                          'assets/icon/stop.png'),
-                                                    ),
-                                                  ),
-                                                ]),
-                                              ),
-                                              Container(
-                                                height: 110,
-                                                child: Stack(children: <Widget>[
-                                                  Center(
-                                                    child: FittedBox(
-                                                      child: Image.asset(
-                                                          'assets/icon/tumbler_icon.png'),
-                                                      fit: BoxFit.fill,
-                                                    ),
-                                                  ),
-                                                  Center(
-                                                    child: Container(
-                                                      height: 30,
-                                                      child: Image.asset(
-                                                          'assets/icon/check.png'),
-                                                    ),
-                                                  ),
-                                                ]),
-                                              ),
-                                            ],
-                                          )),
-                                    ],
-                                  ),
+                                padding: const EdgeInsets.all(8.0),
+                                child: FittedBox(
+                                  child: Image.asset('assets/card/card1.png'),
+                                  fit: BoxFit.fill,
                                 ),
                               ),
                             ),
@@ -301,17 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Flexible(
-                    flex: 5,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: FittedBox(
-                        child: Image.asset('assets/card/card1.png'),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                  ),
-                  Flexible(
-                      flex: 2,
+                      flex: 3,
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(
@@ -327,9 +225,9 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: BarCodeImage(
                               params: Code39BarCodeParams(
                                 "${userData.barcode}",
-                                lineWidth: 2,
+                                lineWidth: 2.5,
                                 // width for a single black/white bar (default: 2.0)
-                                barHeight: 100.0,
+                                barHeight: 130.0,
                                 // height for the entire widget (default: 100.0)
                                 withText:
                                     true, // Render with text label or not (default: false)

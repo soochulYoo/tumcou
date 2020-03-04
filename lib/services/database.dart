@@ -3,17 +3,15 @@ import 'package:tumcou1/models/cafe.dart';
 import 'package:tumcou1/models/user.dart';
 import 'package:random_string/random_string.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:math';
 
 class DatabaseService {
   final String uid;
   final String barcode;
-  int index;
+  final int index;
+  final int amountOfReview;
 
-  DatabaseService({
-    this.uid,
-    this.barcode,
-    this.index,
-  });
+  DatabaseService({this.uid, this.barcode, this.index, this.amountOfReview});
 
   // collection reference
   final CollectionReference userCollection =
@@ -24,23 +22,6 @@ class DatabaseService {
 
   final CollectionReference cafeCollection =
       Firestore.instance.collection('Cafe');
-
-  Future<String> getCafeImageUrl(int index) async {
-    var ref =
-        FirebaseStorage.instance.ref().child('cafeimage/cafeimage$index.jpeg');
-// no need of the file extension, the name will do fine.
-    String url = await ref.getDownloadURL();
-    return url;
-  }
-
-  Future<String> getCafeLogoImageUrl(int index) async {
-    var ref = FirebaseStorage.instance
-        .ref()
-        .child('cafeimage/cafelogo/cafelogo$index.jpeg');
-// no need of the file extension, the name will do fine.
-    String url = await ref.getDownloadURL();
-    return url;
-  }
 
   Future updateUserData(String name, String grade, int xp, String barcode,
       int age, String gender) async {
@@ -87,13 +68,14 @@ class DatabaseService {
   CafeData _cafeFromSnapshot(DocumentSnapshot snapshot) {
     return CafeData(
 //      category: snapshot.data['category'],
-        id: snapshot.data['id'],
-        isFeatured: snapshot.data['isFeatured'],
-        name: snapshot.data['name'],
-        price: snapshot.data['price'],
-        introduction: snapshot.data['introduction'],
-        location: snapshot.data['location'],
-        openingHours: snapshot.data['openingHours']);
+      id: snapshot.data['id'],
+      isFeatured: snapshot.data['isFeatured'],
+      name: snapshot.data['name'],
+      price: snapshot.data['price'],
+      introduction: snapshot.data['introduction'],
+      location: snapshot.data['location'],
+      openingHours: snapshot.data['openingHours'],
+    );
   }
 
   // get user doc stream
@@ -108,15 +90,91 @@ class DatabaseService {
         .map(_cafeFromSnapshot);
   }
 
+  Future<CafeUrl> get getCafeUrl async {
+    var ref1 =
+        FirebaseStorage.instance.ref().child('cafeimage/cafeimage$index.jpeg');
+    var ref2 = FirebaseStorage.instance
+        .ref()
+        .child('cafeimage/cafelogo/cafelogo$index.jpeg');
+// no need of the file extension, the name will do fine.
+    String cafeImageUrl = await ref1.getDownloadURL();
+    String cafeLogoUrl = await ref2.getDownloadURL();
+    return CafeUrl(cafeImageUrl: cafeImageUrl, cafeLogoUrl: cafeLogoUrl);
+  }
+
   //get review documents
-  Future<QuerySnapshot> getAllDocuments(int index) async {
+  Stream<QuerySnapshot> get reviewData {
+    return cafeCollection
+        .document('cafe$index')
+        .collection('review')
+        .snapshots();
+  }
+
+  Stream<ReviewData> cafeReview(int reviewNum) {
     return Firestore.instance
         .collection('Cafe')
         .document('cafe$index')
         .collection('review')
-        .getDocuments();
+        .document('review$reviewNum')
+        .snapshots()
+        .map(_cafeReview);
   }
+
+  ReviewData _cafeReview(DocumentSnapshot snapshot) {
+    return ReviewData(
+      rating: snapshot.data['rating'],
+      text: snapshot.data['text'],
+    );
+  }
+
+  Future<double> get reviewMean async {
+//    List<double> ratingList = List(amountOfReview);
+    double ratingSum = 0;
+    int decimals = 1;
+    int fac = pow(10, decimals);
+    double ratingMean = 0;
+    if (amountOfReview != 0) {
+      var cafeReviewSnapshot = await cafeCollection
+          .document('cafe$index')
+          .collection('review')
+          .getDocuments();
+      for (int i = 0; i < amountOfReview; i++) {
+        dynamic rating = cafeReviewSnapshot.documents[i].data['rating'];
+        ratingSum = ratingSum + rating;
+      }
+      ratingMean = ((ratingSum / amountOfReview) * fac).round() / fac;
+    } else {
+      ratingMean = 0;
+    }
+    return ratingMean;
+  }
+
+//  Stream<double> get reviewMeanStream {
+//    double rating = 0;
+//    double ratingSum = 0;
+//    int decimals = 1;
+//    int fac = pow(10, decimals);
+//    double ratingMean = 0;
+//    if (amountOfReview != 0) {
+//      for (int i = 0; i < amountOfReview; i++) {
+//        cafeCollection
+//            .document('cafe$index')
+//            .collection('review')
+//            .document('review$i')
+//            .get()
+//            .then((DocumentSnapshot ds) {
+//          rating = ds.data['rating'];
+//        });
+//        ratingSum = ratingSum + rating;
+//      }
+//      ratingMean = ((ratingSum / amountOfReview) * fac).round() / fac;
+//    } else {
+//      ratingMean = 0;
+//    }
+//    return ratingMean;
+//  }
 }
+
 //
 //  // brew list from snapshot
 //  List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot) {

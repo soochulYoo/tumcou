@@ -39,6 +39,7 @@ dependencies:
   rxdart: ^0.23.1
   observable: ^0.22.2
   rating_bar: ^0.2.0
+  google_maps_flutter: ^0.5.24+1
 
 dev_dependencies:
   flutter_test:

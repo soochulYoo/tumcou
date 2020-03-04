@@ -7,20 +7,29 @@ class CafeData {
   final String location;
   final String openingHours;
 
-  CafeData(
-      {this.id,
-      this.name,
-      this.introduction,
-      this.isFeatured,
-      this.price,
-      this.location,
-      this.openingHours});
+  CafeData({
+    this.id,
+    this.name,
+    this.introduction,
+    this.isFeatured,
+    this.price,
+    this.location,
+    this.openingHours,
+  });
 }
 
-class CafeReview {
-  final int rating;
+class ReviewData {
+  final double rating;
   final String text;
+  final double ratingMean;
   var dateTime;
 
-  CafeReview({this.rating, this.text, this.dateTime});
+  ReviewData({this.rating, this.text, this.ratingMean, this.dateTime});
+}
+
+class CafeUrl {
+  final String cafeImageUrl;
+  final String cafeLogoUrl;
+
+  CafeUrl({this.cafeImageUrl, this.cafeLogoUrl});
 }

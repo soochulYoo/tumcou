@@ -1,11 +1,11 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/kunhee/tool/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/kunhee/AndroidStudioProjects/tumcou1"
-export "FLUTTER_TARGET=/Users/kunhee/AndroidStudioProjects/tumcou1/lib/main.dart"
+export "FLUTTER_ROOT=/Library/Developer/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/soochulyoo/AndroidStudioProjects/tumcou"
+export "FLUTTER_TARGET=/Users/soochulyoo/AndroidStudioProjects/tumcou/lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"
-export "FLUTTER_FRAMEWORK_DIR=/Users/kunhee/tool/flutter/bin/cache/artifacts/engine/ios"
+export "FLUTTER_FRAMEWORK_DIR=/Library/Developer/flutter/bin/cache/artifacts/engine/ios"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1"
 export "TRACK_WIDGET_CREATION=true"

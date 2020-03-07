@@ -49,7 +49,7 @@ class _EventPageState extends State<EventPage> with TickerProviderStateMixin {
               style: GoogleFonts.cambay(
                   textStyle: TextStyle(
                 color: Colors.blueGrey[700],
-                fontSize: 40,
+                fontSize: 38,
                 fontWeight: FontWeight.bold,
               ))),
           backgroundColor: Colors.green[50],

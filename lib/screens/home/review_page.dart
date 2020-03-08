@@ -33,7 +33,7 @@ class _ReviewPageState extends State<ReviewPage> {
         centerTitle: true,
       ),
       body: StreamBuilder(
-          stream: DatabaseService(index: widget.cafeData.id).reviewData,
+          stream: DatabaseService(cafeId: widget.cafeData.id).reviewData,
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return Loading();
@@ -43,7 +43,7 @@ class _ReviewPageState extends State<ReviewPage> {
                 children: <Widget>[
                   FutureBuilder(
                       future: DatabaseService(
-                              index: widget.cafeData.id,
+                              cafeId: widget.cafeData.id,
                               amountOfReview: amountOfReview)
                           .reviewMean,
                       builder: (context, snapshot) {
@@ -55,7 +55,7 @@ class _ReviewPageState extends State<ReviewPage> {
                               margin:
                                   EdgeInsets.only(left: 10, top: 8, right: 10),
                               decoration: BoxDecoration(
-                                  color: Colors.yellow,
+                                  color: Colors.white,
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(8.0))),
                               child: Column(
@@ -67,8 +67,15 @@ class _ReviewPageState extends State<ReviewPage> {
                                       child: Row(
                                         children: <Widget>[
                                           Text(
-                                            'Reviews |',
+                                            'Reviews',
                                             style: TextStyle(fontSize: 40.0),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 8.0),
+                                            child: VerticalDivider(
+                                              thickness: 2,
+                                            ),
                                           ),
                                           RatingBar.readOnly(
                                             maxRating: 1,
@@ -97,8 +104,8 @@ class _ReviewPageState extends State<ReviewPage> {
                         }
                       }),
                   StreamBuilder(
-                      stream:
-                          DatabaseService(index: widget.cafeData.id).reviewData,
+                      stream: DatabaseService(cafeId: widget.cafeData.id)
+                          .reviewData,
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) {
                           return Loading();
@@ -270,9 +277,6 @@ class _MyCustomFormState extends State<MyCustomForm> {
     return date + time;
   }
 
-  // case (cafenum < 10 > 00x)
-  // case (10<= cafenum < 100 : 0x)
-  // case (100= cafenum : x)
   Future uploadReview(
     int cafeNum,
     int reviewNum,
@@ -280,15 +284,65 @@ class _MyCustomFormState extends State<MyCustomForm> {
     String text,
     var time,
   ) async {
-    return await Firestore.instance
-        .collection('Cafe')
-        .document('cafe$cafeNum')
-        .collection('review')
-        .document('review$reviewNum')
-        .setData({
-      'rating': rating,
-      'text': text,
-      'time': time,
-    });
+    if (reviewNum < 10) {
+      return await Firestore.instance
+          .collection('Cafe')
+          .document('cafe$cafeNum')
+          .collection('review')
+          .document('review00$reviewNum')
+          .setData({
+        'rating': rating,
+        'text': text,
+        'time': time,
+      });
+    } else if (reviewNum < 100) {
+      return await Firestore.instance
+          .collection('Cafe')
+          .document('cafe$cafeNum')
+          .collection('review')
+          .document('review0$reviewNum')
+          .setData({
+        'rating': rating,
+        'text': text,
+        'time': time,
+      });
+    } else {
+      return await Firestore.instance
+          .collection('Cafe')
+          .document('cafe$cafeNum')
+          .collection('review')
+          .document('review$reviewNum')
+          .setData({
+        'rating': rating,
+        'text': text,
+        'time': time,
+      });
+    }
   }
+
+//  Future chooseFile() async {
+//    await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
+//      setState(() {
+//        _image = image;
+//      });
+//    });
+//  }
+//
+//  Future uploadImage(int cafeNum) async {
+//    StorageReference storageReference =
+//    FirebaseStorage.instance.ref().child('reviewimage/cafe$cafeNum/');
+//    var timeKey = DateTime.now();
+//    StorageUploadTask uploadTask =
+//    storageReference.child(timeKey.toString() + ".jpg").putFile(_image);
+//    var imageUrl = await (await uploadTask.onComplete).ref.getDownloadURL();
+//    String url = imageUrl.toString();
+//    print("Image Url = " + url);
+//  }
+//
+//  Future getReviewImageUrl(int cafeNum) async {
+//    StorageReference storageReference =
+//    FirebaseStorage.instance.ref().child('reviewimage/cafe$cafeNum/');
+//    String imageUrl = await storageReference.getPath();
+//    return imageUrl;
+//  }
 }

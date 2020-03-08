@@ -18,6 +18,11 @@ class CafeData {
   });
 }
 
+//class CafeMenu {
+//  final Map<dynamic, String> menu;
+//  CafeMenu(this.menu);
+//}
+
 class ReviewData {
   final double rating;
   final String text;

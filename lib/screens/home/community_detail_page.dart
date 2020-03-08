@@ -3,7 +3,6 @@ import 'package:firebase_storage/firebase_storage.dart'; // For File Upload To F
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart'; // For Image Picker
-import 'package:tumcou1/screens/home/googleMap.dart';
 import 'package:tumcou1/screens/home/review_page.dart';
 import 'package:tumcou1/services/database.dart';
 import 'package:tumcou1/models/cafe.dart';
@@ -15,17 +14,17 @@ import 'package:rating_bar/rating_bar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 
-class UserReviewPage extends StatefulWidget {
+class CommunityDetailPage extends StatefulWidget {
   final CafeData cafeData;
   final CafeUrl cafeUrl;
   final int amountOfReview;
-  UserReviewPage(this.cafeData, this.cafeUrl, this.amountOfReview);
+  CommunityDetailPage(this.cafeData, this.cafeUrl, this.amountOfReview);
 
   @override
-  _UserReviewPageState createState() => _UserReviewPageState();
+  _CommunityDetailPageState createState() => _CommunityDetailPageState();
 }
 
-class _UserReviewPageState extends State<UserReviewPage> {
+class _CommunityDetailPageState extends State<CommunityDetailPage> {
   Completer<GoogleMapController> _controller = Completer();
   static final gwanghwamun = CameraPosition(
     target: LatLng(36.0953103, -115.1992098),
@@ -46,14 +45,14 @@ class _UserReviewPageState extends State<UserReviewPage> {
               );
             },
             child: Container(
-              height: MediaQuery.of(context).size.height * 1 / 10,
+              height: MediaQuery.of(context).size.height * 1 / 15,
               alignment: Alignment.center,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   StreamBuilder(
-                      stream:
-                          DatabaseService(index: widget.cafeData.id).reviewData,
+                      stream: DatabaseService(cafeId: widget.cafeData.id)
+                          .reviewData,
                       builder: (context, snapshot) {
                         if (!snapshot.hasData) {
                           return Loading();
@@ -61,7 +60,7 @@ class _UserReviewPageState extends State<UserReviewPage> {
                           int amountOfReview = snapshot.data.documents.length;
                           return FutureBuilder(
                               future: DatabaseService(
-                                      index: widget.cafeData.id,
+                                      cafeId: widget.cafeData.id,
                                       amountOfReview: amountOfReview)
                                   .reviewMean,
                               builder: (context, snapshot) {
@@ -112,87 +111,113 @@ class _UserReviewPageState extends State<UserReviewPage> {
             )),
       ),
       resizeToAvoidBottomPadding: false,
-      appBar: AppBar(
-        title: Text(
-          'TUMCOU',
-          style: GoogleFonts.cambay(
-            textStyle: TextStyle(
-              color: Colors.blueGrey[700],
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constrains) {
-        return ListView(
+      body: SafeArea(
+        child: ListView(
           children: <Widget>[
-            Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                height: MediaQuery.of(context).size.height * 1 / 3,
-                child: Column(children: <Widget>[
-                  Container(
-                    height: constrains.maxHeight * 1 / 4,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image:
-                                NetworkImage('${widget.cafeUrl.cafeImageUrl}'),
-                            fit: BoxFit.cover),
-                        borderRadius: BorderRadius.all(Radius.circular(12.0))),
+            Column(children: <Widget>[
+              Stack(children: <Widget>[
+                Container(
+                  height: MediaQuery.of(context).size.height * 1 / 3.5,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage('${widget.cafeUrl.cafeImageUrl}'),
+                          fit: BoxFit.cover),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(12.0),
+                          bottomRight: Radius.circular(12.0))),
 
 //                              decoration: BoxDecoration(
 //                                  borderRadius: BorderRadius.circular(15.0),
 //                                  border: Border.all(color: Colors.red)),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(4),
+                ),
+                Positioned(
+                    top: 1,
+                    left: 1,
+                    child: GestureDetector(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 24.0, top: 28.0),
+                          child: Icon(Icons.arrow_back,
+                              color: Colors.white, size: 32),
+                        ),
+                        onTap: () {
+                          Navigator.pop(context);
+                        })),
+                Positioned(
+                    top: 1,
+                    right: 1,
                     child: Row(
                       children: <Widget>[
-                        Flexible(
-                          flex: 1,
-                          child: CircleAvatar(
-                            backgroundImage:
-                                NetworkImage(widget.cafeUrl.cafeLogoUrl),
-                            minRadius: 20,
-                            maxRadius: 40,
-                          ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(top: 28.0, right: 24.0),
+                          child:
+                              Icon(Icons.share, color: Colors.white, size: 32),
                         ),
-                        Flexible(
-                          flex: 3,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text('${widget.cafeData.name}',
-                                    style: GoogleFonts.notoSans(
-                                        textStyle: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600,
-                                    ))),
-                                Text('"${widget.cafeData.introduction}"',
-                                    style: GoogleFonts.notoSans(
-                                        textStyle: TextStyle(fontSize: 16))),
-                              ],
-                            ),
-                          ),
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(right: 24.0, top: 28.0),
+                          child: Icon(Icons.favorite_border,
+                              color: Colors.white, size: 32),
                         ),
                       ],
+                    ))
+              ]),
+              //slider? 점
+              Container(
+                padding: EdgeInsets.all(4),
+                child: Row(
+                  children: <Widget>[
+                    Flexible(
+                      flex: 1,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: CircleAvatar(
+                          backgroundImage:
+                              NetworkImage(widget.cafeUrl.cafeLogoUrl),
+                          minRadius: 20,
+                          maxRadius: 40,
+                        ),
+                      ),
                     ),
-                  ),
-                ])),
+                    Flexible(
+                      flex: 3,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text('${widget.cafeData.name}',
+                                style: GoogleFonts.notoSans(
+                                    textStyle: TextStyle(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.w600,
+                                ))),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 4.0),
+                              child: Text('${widget.cafeData.introduction}',
+                                  style: GoogleFonts.notoSans(
+                                      textStyle: TextStyle(
+                                          fontSize: 16,
+                                          color: Color(0xff00AD65)))),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ]),
+            Divider(),
+            CafeMenu(widget.cafeData.id),
             Divider(),
             Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(8.0))),
-                width: constrains.maxWidth,
+                width: MediaQuery.of(context).size.width,
                 child: Column(children: <Widget>[
                   Padding(
                       padding: const EdgeInsets.only(top: 4.0, bottom: 8.0),
@@ -257,227 +282,69 @@ class _UserReviewPageState extends State<UserReviewPage> {
               ),
             )
           ],
-        );
-      }),
-    );
-  }
-}
-
-class CustomReviewListItem extends StatelessWidget {
-  const CustomReviewListItem({
-    this.username,
-    this.rating,
-    this.text,
-    this.imageUrl,
-    this.date,
-  });
-
-  final String username;
-  final int rating;
-  final String text;
-  final dynamic imageUrl;
-  final String date;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-              flex: 4,
-              child: Column(
-                children: <Widget>[Container(), Text(''), Row()],
-              )),
-          Expanded(
-            flex: 1,
-            child: Container(),
-          ),
-        ],
+        ),
       ),
     );
   }
-
-  Future countReview(int cafeNum) async {}
 }
 
-class MyCustomForm extends StatefulWidget {
-  final int cafeId;
-  final int amountOfReview;
-  final double reviewMean;
-  MyCustomForm(this.cafeId, this.amountOfReview, this.reviewMean);
-
-  @override
-  _MyCustomFormState createState() => _MyCustomFormState();
-}
-
-// Define a corresponding State class.
-// This class holds the data related to the Form.
-class _MyCustomFormState extends State<MyCustomForm> {
-  // Create a text controller and use it to retrieve the current value
-  // of the TextField.
-  final _myController = TextEditingController();
-  double _rating = 5;
-  File _image;
-
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is disposed.
-    _myController.dispose();
-    super.dispose();
-  }
-
+class CafeMenu extends StatelessWidget {
+  final int index;
+  CafeMenu(this.index);
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Column(
-          children: <Widget>[
-            Text("평점: ${widget.reviewMean}"),
-            RatingBar.readOnly(
-              initialRating: widget.reviewMean,
-              filledIcon: Icons.star,
-              halfFilledIcon: Icons.star_half,
-              emptyIcon: Icons.star_border,
-              filledColor: Colors.amber,
-              halfFilledColor: Colors.amber,
-              emptyColor: Colors.amber,
-              size: 20,
-              isHalfAllowed: true,
-            ),
-          ],
-        ),
-        RaisedButton(
-          child: Text('평가하기'),
-          onPressed: () {
-            showAlertDialog();
-          },
-        ),
-      ],
-    );
-  }
-
-  Future<void> showAlertDialog() async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('평가해주세요!!'),
-          content: SingleChildScrollView(
-              child: Column(children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+    final Map<dynamic, dynamic> _menu = {};
+    return Container(
+      child: StreamBuilder(
+          stream: DatabaseService(cafeId: index).representativeMenu,
+          builder: (context, snapshot) {
+            _menu.addAll(snapshot.data);
+            var menuList = _menu.entries.toList();
+            return Column(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: RatingBar(
-                    initialRating: 5,
-                    maxRating: 5,
-                    filledIcon: Icons.star,
-                    emptyIcon: Icons.star_border,
-                    filledColor: Colors.amber,
-                    emptyColor: Colors.amber,
-                    size: 25,
-                    onRatingChanged: (rating) {
-                      setState(() {
-                        if (rating == null)
-                          _rating = 5;
-                        else
-                          _rating = rating;
-                      });
-                    },
+                Text('Menu', style: TextStyle(fontSize: 18)),
+                ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: menuList.length,
+                    itemBuilder: (context, i) {
+                      return Container(
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 16.0, top: 16.0),
+                              child: Text('${menuList[i].key}',
+                                  style: TextStyle(fontSize: 18)),
+                              //데이터 없으면 loading 뜨도록 조건문
+                            ),
+                            Spacer(),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 16.0, top: 16.0),
+                              child: Text(
+                                '${menuList[i].value}',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }),
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 16.0, top: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Text('상세보기', style: TextStyle(fontSize: 18)),
+                      ],
+                    ),
                   ),
                 ),
               ],
-            ),
-            Divider(),
-            TextField(
-              controller: _myController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: '이 장소의 어떤 점이 만족스러웠나요?',
-              ),
-            ),
-          ])),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('취소'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            FlatButton(
-              child: Text('등록'),
-              onPressed: () {
-                String time = generateDbTimeKey();
-                uploadImage(widget.cafeId);
-                uploadReview(widget.cafeId, widget.amountOfReview, _rating,
-                    _myController.text, time);
-                _myController.clear();
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
+            );
+          }),
     );
-  }
-
-  String generateDbTimeKey() {
-    var dbTimeKey = DateTime.now();
-    var formatDate = DateFormat('yyyy, MMM d, ');
-    var formatTime = DateFormat('hh:mm aaaa, EEEE');
-
-    String date = formatDate.format(dbTimeKey);
-    String time = formatTime.format(dbTimeKey);
-
-    return date + time;
-  }
-
-  Future uploadReview(
-    int cafeNum,
-    int reviewNum,
-    double rating,
-    String text,
-    var time,
-  ) async {
-    return await Firestore.instance
-        .collection('Cafe')
-        .document('cafe$cafeNum')
-        .collection('review')
-        .document('review$reviewNum')
-        .setData({
-      'rating': rating,
-      'text': text,
-      'time': time,
-    });
-  }
-
-  Future chooseFile() async {
-    await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
-      setState(() {
-        _image = image;
-      });
-    });
-  }
-
-  Future uploadImage(int cafeNum) async {
-    StorageReference storageReference =
-        FirebaseStorage.instance.ref().child('reviewimage/cafe$cafeNum/');
-    var timeKey = DateTime.now();
-    StorageUploadTask uploadTask =
-        storageReference.child(timeKey.toString() + ".jpg").putFile(_image);
-    var imageUrl = await (await uploadTask.onComplete).ref.getDownloadURL();
-    String url = imageUrl.toString();
-    print("Image Url = " + url);
-  }
-
-  Future getReviewImageUrl(int cafeNum) async {
-    StorageReference storageReference =
-        FirebaseStorage.instance.ref().child('reviewimage/cafe$cafeNum/');
-    String imageUrl = await storageReference.getPath();
-    return imageUrl;
   }
 }

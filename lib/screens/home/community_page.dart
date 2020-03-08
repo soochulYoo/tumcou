@@ -38,21 +38,12 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//        appBar: AppBar(
-//          // Here we take the value from the MyHomePage object that was created by
-//          // the App.build method, and use it to set our appbar title.
-//          title: Center(
-//            child: Text('TUMCOU',
-//                style: GoogleFonts.cambay(
-//                    textStyle: TextStyle(
-//                  color: Colors.blueGrey[700],
-//                  fontSize: 40,
-//                  fontWeight: FontWeight.bold,
-//                ))),
-//          ),
-//        ),
+        appBar: AppBar(
+          title: Row(
+            children: <Widget>[Icon(Icons.search)],
+          ),
+        ),
         body: Container(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
             color: Colors.white,
             child: LayoutBuilder(builder: (context, constraints) {
               return StreamBuilder(
@@ -83,7 +74,7 @@ class GridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     double reviewMean = 0;
     return StreamBuilder<CafeData>(
-        stream: DatabaseService(index: index).cafeData,
+        stream: DatabaseService(cafeId: index).cafeData,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Loading();
@@ -91,14 +82,14 @@ class GridItem extends StatelessWidget {
           } else {
             CafeData cafeData = snapshot.data;
             return FutureBuilder<CafeUrl>(
-                future: DatabaseService(index: index).getCafeUrl,
+                future: DatabaseService(cafeId: index).getCafeUrl,
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
                     return Loading();
                   } else {
                     CafeUrl cafeUrl = snapshot.data;
                     return StreamBuilder(
-                        stream: DatabaseService(index: index).reviewData,
+                        stream: DatabaseService(cafeId: index).reviewData,
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
                             return Loading();
@@ -107,56 +98,55 @@ class GridItem extends StatelessWidget {
                             return Stack(children: <Widget>[
                               Container(
                                   margin: EdgeInsets.symmetric(vertical: 8.0),
-                                  height: maxHeight / 2,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(8.0))),
                                   child: Column(children: <Widget>[
                                     Container(
-                                      height: maxHeight / 3,
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 12),
+                                      height: maxHeight / 2.5,
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
                                               image: NetworkImage(
                                                   '${cafeUrl.cafeImageUrl}'),
                                               fit: BoxFit.cover),
                                           borderRadius: BorderRadius.all(
-                                              Radius.circular(8.0))),
+                                              Radius.circular(12.0))),
 
 //                              decoration: BoxDecoration(
 //                                  borderRadius: BorderRadius.circular(15.0),
 //                                  border: Border.all(color: Colors.red)),
                                     ),
                                     Container(
-                                      height: maxHeight * (1 / 2 - 1 / 3),
-                                      padding: EdgeInsets.all(4),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 12.0),
                                       child: Column(
                                         children: <Widget>[
                                           Row(
                                             children: <Widget>[
-                                              Flexible(
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 8.0,
-                                                          top: 8.0,
-                                                          right: 8.0),
-                                                  child: Text(
-                                                    '${cafeData.name}',
-                                                    style: GoogleFonts.notoSans(
-                                                      textStyle: TextStyle(
-                                                        fontSize: 36,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 4.0,
+                                                    top: 8.0,
+                                                    right: 8.0),
+                                                child: Text(
+                                                  '${cafeData.name}',
+                                                  style: GoogleFonts.notoSans(
+                                                    textStyle: TextStyle(
+                                                      fontSize: 32,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
+                                                  maxLines: 1,
                                                 ),
                                               ),
-                                              Flexible(
+                                              Expanded(
                                                 child: FutureBuilder(
                                                     future: DatabaseService(
-                                                            index: index,
+                                                            cafeId: index,
                                                             amountOfReview:
                                                                 amountOfReview)
                                                         .reviewMean,
@@ -167,8 +157,8 @@ class GridItem extends StatelessWidget {
                                                       return Padding(
                                                         padding:
                                                             const EdgeInsets
-                                                                    .symmetric(
-                                                                vertical: 8.0),
+                                                                    .only(
+                                                                top: 12.0),
                                                         child: Row(
                                                           children: <Widget>[
                                                             RatingBar.readOnly(
@@ -230,7 +220,7 @@ class GridItem extends StatelessWidget {
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                left: 8.0,
+                                                left: 4.0,
                                                 top: 8.0,
                                                 bottom: 8.0),
                                             child: Align(
@@ -245,7 +235,7 @@ class GridItem extends StatelessWidget {
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                left: 4.0),
+                                                left: 0.0),
                                             child: Row(
                                               children: <Widget>[
                                                 Icon(
@@ -272,8 +262,9 @@ class GridItem extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => UserReviewPage(
-                                            cafeData, cafeUrl, amountOfReview)),
+                                        builder: (context) =>
+                                            CommunityDetailPage(cafeData,
+                                                cafeUrl, amountOfReview)),
                                   );
                                 }),
                               )),

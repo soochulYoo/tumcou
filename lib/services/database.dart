@@ -8,10 +8,10 @@ import 'dart:math';
 class DatabaseService {
   final String uid;
   final String barcode;
-  final int index;
+  final int cafeId;
   final int amountOfReview;
 
-  DatabaseService({this.uid, this.barcode, this.index, this.amountOfReview});
+  DatabaseService({this.uid, this.barcode, this.cafeId, this.amountOfReview});
 
   // collection reference
   final CollectionReference userCollection =
@@ -65,6 +65,18 @@ class DatabaseService {
     );
   }
 
+  // get user doc stream
+  Stream<UserData> get userData {
+    return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
+  }
+
+  Stream<CafeData> get cafeData {
+    return cafeCollection
+        .document('cafe$cafeId')
+        .snapshots()
+        .map(_cafeFromSnapshot);
+  }
+
   CafeData _cafeFromSnapshot(DocumentSnapshot snapshot) {
     return CafeData(
 //      category: snapshot.data['category'],
@@ -78,24 +90,39 @@ class DatabaseService {
     );
   }
 
-  // get user doc stream
-  Stream<UserData> get userData {
-    return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
+  Stream<dynamic> get representativeMenu {
+    return cafeCollection
+        .document('cafe$cafeId')
+        .collection('menu')
+        .document('r_menu')
+        .snapshots()
+        .map(_representativeMenuFromSnapshot);
   }
 
-  Stream<CafeData> get cafeData {
-    return cafeCollection
-        .document('cafe$index')
+  Stream<dynamic> get detailMenu {
+    return Firestore.instance
+        .collection('Cafe')
+        .document('cafe$cafeId')
+        .collection('menu')
+        .document('menu')
         .snapshots()
-        .map(_cafeFromSnapshot);
+        .map(_cafeDetailMenuFromSnapshot);
+  }
+
+  dynamic _representativeMenuFromSnapshot(DocumentSnapshot snapshot) {
+    return snapshot.data['r_menu'];
+  }
+
+  dynamic _cafeDetailMenuFromSnapshot(DocumentSnapshot snapshot) {
+    return snapshot.data['menu'];
   }
 
   Future<CafeUrl> get getCafeUrl async {
     var ref1 =
-        FirebaseStorage.instance.ref().child('cafeimage/cafeimage$index.jpeg');
+        FirebaseStorage.instance.ref().child('cafeimage/cafeimage$cafeId.jpeg');
     var ref2 = FirebaseStorage.instance
         .ref()
-        .child('cafeimage/cafelogo/cafelogo$index.jpeg');
+        .child('cafeimage/cafelogo/cafelogo$cafeId.jpeg');
 // no need of the file extension, the name will do fine.
     String cafeImageUrl = await ref1.getDownloadURL();
     String cafeLogoUrl = await ref2.getDownloadURL();
@@ -105,7 +132,7 @@ class DatabaseService {
   //get review documents
   Stream<QuerySnapshot> get reviewData {
     return cafeCollection
-        .document('cafe$index')
+        .document('cafe$cafeId')
         .collection('review')
         .snapshots();
   }
@@ -113,7 +140,7 @@ class DatabaseService {
   Stream<ReviewData> cafeReview(int reviewNum) {
     return Firestore.instance
         .collection('Cafe')
-        .document('cafe$index')
+        .document('cafe$cafeId')
         .collection('review')
         .document('review$reviewNum')
         .snapshots()
@@ -135,7 +162,7 @@ class DatabaseService {
     double ratingMean = 0;
     if (amountOfReview != 0) {
       var cafeReviewSnapshot = await cafeCollection
-          .document('cafe$index')
+          .document('cafe$cafeId')
           .collection('review')
           .getDocuments();
       for (int i = 0; i < amountOfReview; i++) {

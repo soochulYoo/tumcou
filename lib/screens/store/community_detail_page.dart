@@ -1,15 +1,13 @@
-import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart'; // For File Upload To Firestore
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart'; // For Image Picker
-import 'package:tumcou1/screens/home/review_page.dart';
+import 'package:provider/provider.dart';
+import 'package:tumcou1/models/user.dart';
+import 'package:tumcou1/screens/store/menu_page.dart';
+import 'package:tumcou1/screens/store/review_page.dart';
 import 'package:tumcou1/services/database.dart';
 import 'package:tumcou1/models/cafe.dart';
 import 'package:tumcou1/shared/loading.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
 import 'package:rating_bar/rating_bar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
@@ -33,82 +31,98 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
-        child: GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ReviewPage(widget.cafeData)),
-              );
-            },
-            child: Container(
-              height: MediaQuery.of(context).size.height * 1 / 15,
-              alignment: Alignment.center,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  StreamBuilder(
-                      stream: DatabaseService(cafeId: widget.cafeData.id)
-                          .reviewData,
-                      builder: (context, snapshot) {
-                        if (!snapshot.hasData) {
-                          return Loading();
-                        } else {
-                          int amountOfReview = snapshot.data.documents.length;
-                          return FutureBuilder(
-                              future: DatabaseService(
-                                      cafeId: widget.cafeData.id,
-                                      amountOfReview: amountOfReview)
-                                  .reviewMean,
+        child: StreamBuilder<UserData>(
+            stream: DatabaseService(uid: user.uid).userData,
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Text('loading...');
+              } else {
+                return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ReviewPage(widget.cafeData, snapshot.data)),
+                      );
+                    },
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 1 / 15,
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          StreamBuilder(
+                              stream:
+                                  DatabaseService(cafeId: widget.cafeData.id)
+                                      .reviewData,
                               builder: (context, snapshot) {
-                                double reviewMean = snapshot.data;
                                 if (!snapshot.hasData) {
                                   return Loading();
                                 } else {
-                                  return Row(
-                                    children: <Widget>[
-                                      RatingBar.readOnly(
-                                        maxRating: 1,
-                                        initialRating: 1,
-                                        filledIcon: Icons.star,
-                                        halfFilledIcon: Icons.star_half,
-                                        emptyIcon: Icons.star_border,
-                                        filledColor: Colors.amber,
-                                        halfFilledColor: Colors.amber,
-                                        emptyColor: Colors.amber,
-                                        size: 16,
-                                        isHalfAllowed: true,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(4.0),
-                                        child: Text(
-                                          "$reviewMean",
-                                          style: TextStyle(fontSize: 16),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(4.0),
-                                        child: Text(
-                                          "($amountOfReview)",
-                                          style: TextStyle(fontSize: 16),
-                                        ),
-                                      ),
-                                    ],
-                                  );
+                                  int amountOfReview =
+                                      snapshot.data.documents.length;
+                                  return FutureBuilder(
+                                      future: DatabaseService(
+                                              cafeId: widget.cafeData.id,
+                                              amountOfReview: amountOfReview)
+                                          .reviewMean,
+                                      builder: (context, snapshot) {
+                                        double reviewMean = snapshot.data;
+                                        if (!snapshot.hasData) {
+                                          return Loading();
+                                        } else {
+                                          return Row(
+                                            children: <Widget>[
+                                              RatingBar.readOnly(
+                                                maxRating: 1,
+                                                initialRating: 1,
+                                                filledIcon: Icons.star,
+                                                halfFilledIcon: Icons.star_half,
+                                                emptyIcon: Icons.star_border,
+                                                filledColor: Colors.amber,
+                                                halfFilledColor: Colors.amber,
+                                                emptyColor: Colors.amber,
+                                                size: 16,
+                                                isHalfAllowed: true,
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Text(
+                                                  "$reviewMean",
+                                                  style:
+                                                      TextStyle(fontSize: 16),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(4.0),
+                                                child: Text(
+                                                  "($amountOfReview)",
+                                                  style:
+                                                      TextStyle(fontSize: 16),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        }
+                                      });
                                 }
-                              });
-                        }
-                      }),
-                  Text(
-                    '리뷰',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ],
-              ),
-            )),
+                              }),
+                          Text(
+                            '리뷰',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ],
+                      ),
+                    ));
+              }
+            }),
       ),
       resizeToAvoidBottomPadding: false,
       body: SafeArea(
@@ -200,7 +214,8 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
                                   style: GoogleFonts.notoSans(
                                       textStyle: TextStyle(
                                           fontSize: 16,
-                                          color: Color(0xff00AD65)))),
+                                          color:
+                                              Theme.of(context).accentColor))),
                             ),
                           ],
                         ),
@@ -289,14 +304,14 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
 }
 
 class CafeMenu extends StatelessWidget {
-  final int index;
-  CafeMenu(this.index);
+  final int cafeId;
+  CafeMenu(this.cafeId);
   @override
   Widget build(BuildContext context) {
     final Map<dynamic, dynamic> _menu = {};
     return Container(
       child: StreamBuilder(
-          stream: DatabaseService(cafeId: index).representativeMenu,
+          stream: DatabaseService(cafeId: cafeId).representativeMenu,
           builder: (context, snapshot) {
             _menu.addAll(snapshot.data);
             var menuList = _menu.entries.toList();
@@ -331,16 +346,14 @@ class CafeMenu extends StatelessWidget {
                         ),
                       );
                     }),
-                Container(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 16.0, top: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text('상세보기', style: TextStyle(fontSize: 18)),
-                      ],
-                    ),
-                  ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MenuPage(cafeId)),
+                    );
+                  },
+                  child: Text('상세보기', style: TextStyle(fontSize: 18)),
                 ),
               ],
             );

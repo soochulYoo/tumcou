@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:tumcou1/screens/manager_home/manager_page.dart';
 import 'package:tumcou1/screens/wrapper.dart';
 import 'package:tumcou1/services/auth.dart';
 import 'package:tumcou1/models/user.dart';
-import 'package:syncfusion_flutter_core/core.dart';
 
 void main() {
-  SyncfusionLicense.registerLicense(
-      "NT8mJyc2IWhiZH1nfWN9YGpoYmF8YGJ8ampqanNiYmlmamlmanMDHmg7ODsTKjw9IDY6fTIwfTgh");
-
-  runApp(MaterialApp(
-    title: 'My app', // used by the OS task switcher
-    home: MyApp(),
-  ));
+  runApp(
+    MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,8 +19,20 @@ class MyApp extends StatelessWidget {
     return StreamProvider<User>.value(
       value: AuthService().user,
       child: MaterialApp(
-        home: Wrapper(),
-      ),
+          theme: ThemeData(
+              primaryColor: Colors.white,
+              accentColor: Color(0xff00AD65),
+              textTheme: TextTheme(
+                  display1: GoogleFonts.nanumGothic(
+                    fontSize: 44,
+                  ),
+                  display2: GoogleFonts.nanumGothic(
+                    fontSize: 22,
+                  ),
+                  display3: GoogleFonts.nanumGothic(
+                    fontSize: 18,
+                  ))),
+          home: Wrapper()),
     );
   }
 }

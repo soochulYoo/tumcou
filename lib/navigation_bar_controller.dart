@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tumcou1/screens/home/community_page2.dart';
 import 'screens/home/event_page/event_page.dart';
 import 'screens/home/home_page.dart';
-import 'screens/home/community_page.dart';
+import 'screens/store/community_page.dart';
 
 class BottomNavigationBarController extends StatefulWidget {
   @override
@@ -37,10 +36,10 @@ class _BottomNavigationBarControllerState
               title: Text('Home'),
               activeIcon: Icon(Icons.home, color: Color(0xff00AD65))),
           BottomNavigationBarItem(
-            icon: Icon(Icons.people),
+            icon: Icon(Icons.store),
             title: Text('Community'),
             activeIcon: Icon(
-              Icons.people,
+              Icons.store,
               color: Color(0xff00AD65),
             ),
           ),

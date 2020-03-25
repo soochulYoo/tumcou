@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tumcou1/services/auth.dart';
 
 class SettingPage extends StatelessWidget {
-  static const String routeName = "/settingPage";
   final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {

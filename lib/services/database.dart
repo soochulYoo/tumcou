@@ -10,8 +10,10 @@ class DatabaseService {
   final String barcode;
   final int cafeId;
   final int amountOfReview;
+  final int menuNum;
 
-  DatabaseService({this.uid, this.barcode, this.cafeId, this.amountOfReview});
+  DatabaseService(
+      {this.uid, this.barcode, this.cafeId, this.amountOfReview, this.menuNum});
 
   // collection reference
   final CollectionReference userCollection =
@@ -23,15 +25,18 @@ class DatabaseService {
   final CollectionReference cafeCollection =
       Firestore.instance.collection('Cafe');
 
-  Future updateUserData(String name, String grade, int xp, String barcode,
-      int age, String gender) async {
+  Future updateUserData(
+    String name,
+    String grade,
+    int xp,
+    String barcode,
+  ) async {
     return await userCollection.document(uid).setData({
       'name': name,
       'grade': grade,
       'xp': xp,
       'barcode': barcode,
-      'age': age,
-      'gender': gender,
+      'manager': false,
     });
   }
 
@@ -39,23 +44,23 @@ class DatabaseService {
     return '${randomBetween(1000, 9999)}' + randomAlpha(4).toUpperCase();
   }
 
-  Future updateBarCodeData(String uid, String barcode) async {
-    return await barcodeCollection.document('barcode').setData({
-      uid: barcode,
+  Future updateBarCodeData(String uid, String name, String barcode) async {
+    return await barcodeCollection.document(barcode).setData({
+      'uid': uid,
+      'name': name,
+      'point': 0,
     }, merge: true);
   }
 
   // userData fromm snapshot
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
     return UserData(
-      uid: uid,
-      name: snapshot.data['name'],
-      grade: snapshot.data['grade'],
-      xp: snapshot.data['xp'],
-      barcode: snapshot.data['barcode'],
-      age: snapshot.data['age'],
-      gender: snapshot.data['gender'],
-    );
+        uid: uid,
+        name: snapshot.data['name'],
+        grade: snapshot.data['grade'],
+        xp: snapshot.data['xp'],
+        barcode: snapshot.data['barcode'],
+        manager: snapshot.data['manager']);
   }
 
   BarcodeData _barcodeDataFromSnapshot(DocumentSnapshot snapshot) {
@@ -90,6 +95,14 @@ class DatabaseService {
     );
   }
 
+  //cafeMenu
+  Future<QuerySnapshot> get menuLength {
+    return cafeCollection
+        .document('cafe$cafeId')
+        .collection('menu')
+        .getDocuments();
+  }
+
   Stream<dynamic> get representativeMenu {
     return cafeCollection
         .document('cafe$cafeId')
@@ -99,24 +112,29 @@ class DatabaseService {
         .map(_representativeMenuFromSnapshot);
   }
 
-  Stream<dynamic> get detailMenu {
-    return Firestore.instance
-        .collection('Cafe')
-        .document('cafe$cafeId')
-        .collection('menu')
-        .document('menu')
-        .snapshots()
-        .map(_cafeDetailMenuFromSnapshot);
-  }
-
   dynamic _representativeMenuFromSnapshot(DocumentSnapshot snapshot) {
     return snapshot.data['r_menu'];
   }
 
-  dynamic _cafeDetailMenuFromSnapshot(DocumentSnapshot snapshot) {
-    return snapshot.data['menu'];
+  Stream<CafeMenu> get menuList {
+    return Firestore.instance
+        .collection('Cafe')
+        .document('cafe$cafeId')
+        .collection('menu')
+        .document('menu$menuNum')
+        .snapshots()
+        .map(_menuNameFromSnapshot);
   }
 
+  CafeMenu _menuNameFromSnapshot(DocumentSnapshot snapshot) {
+    return CafeMenu(
+        menuName: snapshot.data['menu_name'],
+        menuPrice: snapshot.data['menu_price'],
+        menuRecommend: snapshot.data['menu_recommend'],
+        title: snapshot.data['title']);
+  }
+
+//cafeUrl
   Future<CafeUrl> get getCafeUrl async {
     var ref1 =
         FirebaseStorage.instance.ref().child('cafeimage/cafeimage$cafeId.jpeg');

@@ -1,6 +1,6 @@
 import 'package:tumcou1/models/cafe.dart';
 import 'package:flutter/material.dart';
-import 'package:tumcou1/screens/home/community_detail_page.dart';
+import 'package:tumcou1/screens/store/community_detail_page.dart';
 import 'package:tumcou1/services/database.dart';
 import 'package:tumcou1/shared/loading.dart';
 import 'package:tumcou1/shared/styles.dart';
@@ -10,31 +10,6 @@ import 'package:rating_bar/rating_bar.dart';
 
 class CommunityPage extends StatelessWidget {
   const CommunityPage({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: ThemeData(
-            primaryColor: Colors.white,
-            primaryColorDark: Color.fromRGBO(182, 194, 183, 50),
-            // secondary color
-            secondaryHeaderColor: Colors.lightGreen[400],
-            textTheme: TextTheme(
-              headline6: TextStyle(
-                  color: Colors.blueGrey[700],
-                  fontSize: 36.0,
-                  fontWeight: FontWeight.bold),
-              headline5: TextStyle(
-                  color: Colors.blueGrey[700],
-                  fontSize: 24.0,
-                  fontStyle: FontStyle.italic),
-              bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
-            )),
-        home: MainPage());
-  }
-}
-
-class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -171,8 +146,9 @@ class GridItem extends StatelessWidget {
                                                                       .star_half,
                                                               emptyIcon: Icons
                                                                   .star_border,
-                                                              filledColor: Color(
-                                                                  0xff00AD65),
+                                                              filledColor: Theme
+                                                                      .of(context)
+                                                                  .accentColor,
                                                               halfFilledColor:
                                                                   Colors.amber,
                                                               emptyColor:
@@ -190,8 +166,9 @@ class GridItem extends StatelessWidget {
                                                                 style: TextStyle(
                                                                     fontSize:
                                                                         16.0,
-                                                                    color: Color(
-                                                                        0xff00AD65)),
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .accentColor),
                                                               ),
                                                             ),
                                                             Text("(",
@@ -229,7 +206,8 @@ class GridItem extends StatelessWidget {
                                                   '${cafeData.introduction}',
                                                   style: TextStyle(
                                                     fontSize: 16.0,
-                                                    color: Color(0xff00AD65),
+                                                    color: Theme.of(context)
+                                                        .accentColor,
                                                   ),
                                                 )),
                                           ),

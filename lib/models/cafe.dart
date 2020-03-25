@@ -38,3 +38,12 @@ class CafeUrl {
 
   CafeUrl({this.cafeImageUrl, this.cafeLogoUrl});
 }
+
+class CafeMenu {
+  final List menuName;
+  final List menuPrice;
+  final List menuRecommend;
+  final String title;
+
+  CafeMenu({this.menuName, this.menuPrice, this.menuRecommend, this.title});
+}

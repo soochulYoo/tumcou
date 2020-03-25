@@ -44,7 +44,8 @@ class AuthService {
   }
 
   // register with email & password
-  Future registerWithEmailPassword(String email, String password) async {
+  Future registerWithEmailPassword(
+      String email, String password, String name) async {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -53,8 +54,9 @@ class AuthService {
       // create a new document for the user with the uid
       String barcode = await DatabaseService().generateBarcode();
       await DatabaseService(uid: user.uid)
-          .updateUserData('new user', 'brown', 60, barcode, 25, 'man');
-      await DatabaseService(uid: user.uid).updateBarCodeData(user.uid, barcode);
+          .updateUserData(name, 'Family', 0, barcode);
+      await DatabaseService(uid: user.uid)
+          .updateBarCodeData(user.uid, name, barcode);
 
       return _userFromFirebaseUser(user);
     } catch (e) {

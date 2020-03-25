@@ -15,8 +15,10 @@ class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
 
   // text fields state
+  String name = '';
   String email = '';
   String password = '';
+  String conformPassword = '';
   String error = '';
 
   @override
@@ -57,6 +59,17 @@ class _RegisterState extends State<Register> {
                           TextFormField(
                               decoration: textInputDecoration.copyWith(
                                 prefixIcon: Icon(Icons.account_circle),
+                                hintText: 'Name',
+                              ),
+                              validator: (val) =>
+                                  val.isEmpty ? 'Enter a name' : null,
+                              onChanged: (val) {
+                                setState(() => name = val);
+                              }),
+                          SizedBox(height: 20.0),
+                          TextFormField(
+                              decoration: textInputDecoration.copyWith(
+                                prefixIcon: Icon(Icons.email),
                                 hintText: 'Email',
                               ),
                               validator: (val) =>
@@ -81,6 +94,22 @@ class _RegisterState extends State<Register> {
                           SizedBox(
                             height: 20.0,
                           ),
+                          TextFormField(
+                            decoration: textInputDecoration.copyWith(
+                              prefixIcon: Icon(Icons.lock),
+                              hintText: 'Confirm Password',
+                            ),
+                            validator: (val) =>
+                                val.length < 6 ? '6자 이상의 비밀번호를 입력하세요' : null,
+                            //obscure password
+                            obscureText: true,
+                            onChanged: (val) {
+                              setState(() => conformPassword = val);
+                            },
+                          ),
+                          SizedBox(
+                            height: 20.0,
+                          ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -91,15 +120,34 @@ class _RegisterState extends State<Register> {
                                   child: Text('Register',
                                       style: TextStyle(color: Colors.white)),
                                   onPressed: () async {
-                                    if (_formKey.currentState.validate()) {
+                                    if (_formKey.currentState
+                                        .validate()) if (password == conformPassword) {
                                       dynamic result =
                                           await _auth.registerWithEmailPassword(
-                                              email, password);
+                                              email, password, name);
 
                                       if (result == null) {
                                         setState(() => error =
                                             'please supply a valid email');
                                       }
+                                    } else {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Text("Error"),
+                                              content: Text(
+                                                  "The passwords do not match"),
+                                              actions: <Widget>[
+                                                FlatButton(
+                                                  child: Text("Close"),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                )
+                                              ],
+                                            );
+                                          });
                                     }
                                   },
                                 ),

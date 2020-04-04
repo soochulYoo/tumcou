@@ -12,26 +12,41 @@ import 'package:rating_bar/rating_bar.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 
-class CommunityDetailPage extends StatefulWidget {
+class StoreDetailPage extends StatefulWidget {
   final CafeData cafeData;
   final CafeUrl cafeUrl;
   final int amountOfReview;
-  CommunityDetailPage(this.cafeData, this.cafeUrl, this.amountOfReview);
+  StoreDetailPage(this.cafeData, this.cafeUrl, this.amountOfReview);
 
   @override
-  _CommunityDetailPageState createState() => _CommunityDetailPageState();
+  _StoreDetailPageState createState() => _StoreDetailPageState();
 }
 
-class _CommunityDetailPageState extends State<CommunityDetailPage> {
+class _StoreDetailPageState extends State<StoreDetailPage> {
   Completer<GoogleMapController> _controller = Completer();
-  static final gwanghwamun = CameraPosition(
-    target: LatLng(36.0953103, -115.1992098),
-    zoom: 10.0,
-  );
+  BitmapDescriptor pinLocationIcon;
+  Set<Marker> _markers = {};
+
+  @override
+  void initState() {
+    super.initState();
+    setCustomMapPin();
+  }
+
+  void setCustomMapPin() async {
+    pinLocationIcon = await BitmapDescriptor.fromAssetImage(
+        ImageConfiguration(
+          devicePixelRatio: 2.5,
+        ),
+        'assets/pin.png');
+  }
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
+    LatLng pinPosition = LatLng(37.565954, 126.938540);
+    CameraPosition initialLocation =
+        CameraPosition(zoom: 16, bearing: 30, target: pinPosition);
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         color: Colors.white,
@@ -278,20 +293,18 @@ class _CommunityDetailPageState extends State<CommunityDetailPage> {
                   Container(
                     height: 200,
                     child: GoogleMap(
-                      mapType: MapType.normal,
-                      initialCameraPosition: CameraPosition(
-                        target: LatLng(37.565954, 126.938540),
-                        zoom: 15.0,
-                      ),
-                      onMapCreated: (GoogleMapController controller) {
-                        _controller.complete(controller);
-                      },
-                      compassEnabled: true,
-                      zoomGesturesEnabled: true,
-                      rotateGesturesEnabled: true,
-                      scrollGesturesEnabled: true,
-                      tiltGesturesEnabled: true,
-                    ),
+                        myLocationEnabled: true,
+                        markers: _markers,
+                        initialCameraPosition: initialLocation,
+                        onMapCreated: (GoogleMapController controller) {
+                          _controller.complete(controller);
+                          setState(() {
+                            _markers.add(Marker(
+                                markerId: MarkerId('cafe'),
+                                position: pinPosition,
+                                icon: pinLocationIcon));
+                          });
+                        }),
                   ),
                 ],
               ),

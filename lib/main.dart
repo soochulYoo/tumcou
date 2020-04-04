@@ -20,18 +20,19 @@ class MyApp extends StatelessWidget {
       value: AuthService().user,
       child: MaterialApp(
           theme: ThemeData(
-              primaryColor: Colors.white,
-              accentColor: Color(0xff00AD65),
+              primaryColor: Color(0xffEFEEEE),
+              accentColor: Color(0xff999999),
+              buttonColor: Colors.grey[400],
               textTheme: TextTheme(
-                  display1: GoogleFonts.nanumGothic(
-                    fontSize: 44,
-                  ),
-                  display2: GoogleFonts.nanumGothic(
-                    fontSize: 22,
-                  ),
-                  display3: GoogleFonts.nanumGothic(
-                    fontSize: 18,
-                  ))),
+                headline1: GoogleFonts.nanumPenScript(
+                    fontSize: 44, color: Colors.black),
+                headline2: GoogleFonts.nanumPenScript(
+                    fontSize: 20, color: Colors.black),
+                bodyText1:
+                    GoogleFonts.nanumGothic(fontSize: 16, color: Colors.black),
+                button:
+                    GoogleFonts.nanumGothic(fontSize: 14, color: Colors.black),
+              )),
           home: Wrapper()),
     );
   }

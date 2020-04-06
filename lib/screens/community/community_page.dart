@@ -20,29 +20,6 @@ class _CommunityPageState extends State<CommunityPage> {
   DatabaseReference feedRef =
       FirebaseDatabase.instance.reference().child('Community');
 
-//  @override
-//  void initState() {
-//    super.initState();
-
-//
-//    postRef.once().then((DataSnapshot doc) {
-//      var KEYS = doc.value.keys;
-//      var DATA = doc.value;
-//      postList.clear();
-//      for (var individualKey in KEYS) {
-//        Post post = Post(
-//          DATA[individualKey]['date'],
-//          DATA[individualKey]['image'],
-//          DATA[individualKey]['name'],
-//          DATA[individualKey]['text'],
-//          DATA[individualKey]['time'],
-//          DATA[individualKey]['uid'],
-//        );
-//        postList.add(post);
-//      }
-//    });
-//  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -34,7 +34,6 @@ class DatabaseService {
     return await userCollection.document(uid).setData({
       'name': name,
       'grade': grade,
-      'xp': xp,
       'barcode': barcode,
       'manager': false,
     });
@@ -58,9 +57,7 @@ class DatabaseService {
         uid: uid,
         name: snapshot.data['name'],
         grade: snapshot.data['grade'],
-        xp: snapshot.data['xp'],
-        barcode: snapshot.data['barcode'],
-        manager: snapshot.data['manager']);
+        barcode: snapshot.data['barcode']);
   }
 
   BarcodeData _barcodeDataFromSnapshot(DocumentSnapshot snapshot) {

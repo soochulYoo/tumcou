@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -66,19 +67,9 @@ class _WritingPageState extends State<WritingPage> {
                   ),
                 ),
                 onPressed: () {
-                  String time = generateDbTimeKey();
-                  uploadReview(_myController.text, time);
+                  uploadImage0(_myController.text);
                   _myController.clear();
-                  if (_image[0] == true) {
-                    uploadImage0(time);
-                    if (_image[1] == true) {
-                      uploadImage1(time);
-                      if (_image[2] == true) {
-                        uploadImage2(time);
-                      }
-                    }
-                  }
-                  Navigator.of(context).pop();
+                  Navigator.pop(context, true);
                 },
               ),
             ),
@@ -197,32 +188,6 @@ class _WritingPageState extends State<WritingPage> {
     );
   }
 
-  String generateDbTimeKey() {
-    var dbTimeKey = DateTime.now();
-    var formatDate = DateFormat('MMM d, ');
-    var formatTime = DateFormat('hh:mm aaa ss, EEEE, yyyy');
-
-    String date = formatDate.format(dbTimeKey);
-    String time = formatTime.format(dbTimeKey);
-
-    return date + time;
-  }
-
-  Future uploadReview(
-    String text,
-    var time,
-  ) async {
-    Firestore.instance
-        .collection('Board')
-        .document('$time' + widget.userData.uid)
-        .setData({
-      'text': text,
-      'time_key': time,
-      'name': widget.userData.name,
-      'uid': widget.userData.uid,
-    });
-  }
-
   Future getImage0() async {
     await ImagePicker.pickImage(source: ImageSource.gallery).then((image) {
       setState(() {
@@ -250,21 +215,34 @@ class _WritingPageState extends State<WritingPage> {
     });
   }
 
-  Future uploadImage0(String time) async {
+  uploadImage0(String text) async {
+    var dbTimeKey = DateTime.now();
+    var formatDate = DateFormat('MMM d, yyyy');
+    var formatTime = DateFormat('EEEE, hh:mm aaa');
+
     StorageReference storageReference = FirebaseStorage.instance
         .ref()
-        .child('reviewimage/$time + ${widget.userData.uid}/');
+        .child('reviewimage/${dbTimeKey.toString()}/');
     StorageUploadTask uploadTask =
         storageReference.child("0.jpg").putFile(_image0);
     var imageUrl0 = await (await uploadTask.onComplete).ref.getDownloadURL();
     String url0 = imageUrl0.toString();
-    Firestore.instance
-        .collection('Board')
-        .document('$time' + widget.userData.uid)
-        .updateData({'image0': url0});
+    String date = formatDate.format(dbTimeKey);
+    String time = formatTime.format(dbTimeKey);
+
+    DatabaseReference ref = FirebaseDatabase.instance.reference();
+    var data = {
+      'text': text,
+      'date': date,
+      'time': time,
+      'name': widget.userData.name,
+      'uid': widget.userData.uid,
+      'image': url0
+    };
+    ref.child("Community").push().set(data);
   }
 
-  Future uploadImage1(String time) async {
+  uploadImage1(String time) async {
     StorageReference storageReference = FirebaseStorage.instance
         .ref()
         .child('reviewimage/$time + ${widget.userData.uid}/');
@@ -273,12 +251,14 @@ class _WritingPageState extends State<WritingPage> {
     var imageUrl1 = await (await uploadTask.onComplete).ref.getDownloadURL();
     String url1 = imageUrl1.toString();
     Firestore.instance
-        .collection('Board')
+        .collection('Community')
         .document('$time' + widget.userData.uid)
-        .updateData({'image1': url1});
+        .updateData({'image1': url1}).then((result) => setState(() {
+              _image[1] = false;
+            }));
   }
 
-  Future uploadImage2(String time) async {
+  uploadImage2(String time) async {
     StorageReference storageReference = FirebaseStorage.instance
         .ref()
         .child('reviewimage/$time + ${widget.userData.uid}/');
@@ -287,15 +267,17 @@ class _WritingPageState extends State<WritingPage> {
     var imageUrl2 = await (await uploadTask.onComplete).ref.getDownloadURL();
     String url2 = imageUrl2.toString();
     Firestore.instance
-        .collection('Board')
+        .collection('Community')
         .document('$time' + widget.userData.uid)
-        .updateData({'image2': url2});
+        .updateData({'image2': url2}).then((value) => setState(() {
+              _image[1] = false;
+            }));
   }
 
-  Future getReviewImageUrl(int cafeNum) async {
-    StorageReference storageReference =
-        FirebaseStorage.instance.ref().child('reviewimage/cafe$cafeNum/');
-    String imageUrl = await storageReference.getPath();
-    return imageUrl;
-  }
+//  Future getReviewImageUrl(int cafeNum) async {
+//    StorageReference storageReference =
+//        FirebaseStorage.instance.ref().child('reviewimage/cafe$cafeNum/');
+//    String imageUrl = await storageReference.getPath();
+//    return imageUrl;
+//  }
 }

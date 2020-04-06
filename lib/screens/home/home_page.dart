@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tumcou1/models/user.dart';
+import 'package:tumcou1/screens/home/posting/posting_screen.dart';
 import 'package:tumcou1/screens/home/self_check.dart';
 
 class HomePage extends StatefulWidget {
@@ -52,15 +54,67 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => SelfCheckPage()),
+                      MaterialPageRoute(
+                          builder: (context) => SelfCheckPage(widget.userData)),
                     );
                   },
                 ),
               ],
             ),
           ),
+          SizedBox(
+            height: 8,
+          ),
+          StreamBuilder(
+              stream: Firestore.instance.collection("Posting").snapshots(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (!snapshot.hasData) {
+                  return CircularProgressIndicator();
+                } else {
+                  /// 이 class는 홈 화면에 배치되는 화면이다
+                  ///
+                  int numberofPosting = snapshot.data.documents.length;
+
+                  ///뭐가 문제일까?
+                  //PostingUrl postingUrl = snapshot.data as PostingUrl;
+
+                  return Flexible(
+                    child: ListView.builder(
+                        itemCount: numberofPosting,
+                        itemBuilder: (BuildContext context, int index) {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => PostingScreen(
+                                          snapshot.data.documents[index])));
+                            },
+                            child: PostItem(snapshot.data.documents[index]),
+                          );
+                        }),
+                  );
+                }
+              }),
         ],
       ),
+    );
+  }
+}
+
+class PostItem extends StatelessWidget {
+  final DocumentSnapshot doc;
+  PostItem(this.doc);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: NetworkImage(
+                '${doc['thumbnail']}',
+              ),
+              fit: BoxFit.fill)),
     );
   }
 }

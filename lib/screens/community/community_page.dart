@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tumcou1/models/feed.dart';
 import 'package:tumcou1/models/user.dart';
 import 'package:tumcou1/screens/community/writing_page.dart';
 import 'package:tumcou1/shared/loading.dart';
@@ -14,24 +16,61 @@ class CommunityPage extends StatefulWidget {
 }
 
 class _CommunityPageState extends State<CommunityPage> {
+  List<dynamic> feedList = [];
+  DatabaseReference feedRef =
+      FirebaseDatabase.instance.reference().child('Community');
+
+//  @override
+//  void initState() {
+//    super.initState();
+
+//
+//    postRef.once().then((DataSnapshot doc) {
+//      var KEYS = doc.value.keys;
+//      var DATA = doc.value;
+//      postList.clear();
+//      for (var individualKey in KEYS) {
+//        Post post = Post(
+//          DATA[individualKey]['date'],
+//          DATA[individualKey]['image'],
+//          DATA[individualKey]['name'],
+//          DATA[individualKey]['text'],
+//          DATA[individualKey]['time'],
+//          DATA[individualKey]['uid'],
+//        );
+//        postList.add(post);
+//      }
+//    });
+//  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: StreamBuilder(
-          stream: Firestore.instance.collection("Board").snapshots(),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if (!snapshot.hasData) {
-              return Loading();
+          stream: feedRef.onValue,
+          builder: (context, AsyncSnapshot<Event> snapshot) {
+            if (snapshot.hasData) {
+              feedList.clear();
+              DataSnapshot dataValues = snapshot.data.snapshot;
+              Map<dynamic, dynamic> values = dataValues.value;
+              values.forEach((key, value) {
+                feedList.add(value);
+              });
+              if (feedList.length == 0) {
+                return Center(
+                  child: Text('준비중입니다'),
+                );
+              } else {
+                return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: feedList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GridItem(feedList[index]);
+                    });
+              }
             } else {
-              int amountOfCafe = snapshot.data.documents.length;
-              return ListView.builder(
-                padding: EdgeInsets.only(top: 10),
-                itemCount: amountOfCafe,
-                itemBuilder: (BuildContext context, int index) {
-                  return GridItem(snapshot.data.documents[index]);
-                },
-              );
+              return Loading();
             }
           }),
       bottomNavigationBar: BottomAppBar(
@@ -39,10 +78,9 @@ class _CommunityPageState extends State<CommunityPage> {
         child: GestureDetector(
             onTap: () {
               Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => WritingPage(widget.userData)),
-              );
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => WritingPage(widget.userData)));
             },
             child: Container(
               height: MediaQuery.of(context).size.height * 1 / 15,
@@ -65,8 +103,8 @@ class _CommunityPageState extends State<CommunityPage> {
 }
 
 class GridItem extends StatelessWidget {
-  final DocumentSnapshot doc;
-  GridItem(this.doc);
+  final dynamic _feed;
+  GridItem(this._feed);
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +144,7 @@ class GridItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 4.0),
               child: Text(
-                doc['name'],
+                _feed['name'],
                 style: GoogleFonts.notoSans(
                   textStyle: TextStyle(
                     fontSize: 24,
@@ -118,20 +156,17 @@ class GridItem extends StatelessWidget {
             ),
           ],
         ),
-        Container(
-            margin: EdgeInsets.symmetric(vertical: 4.0),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: NetworkImage(doc['image0']), fit: BoxFit.fill),
-              ),
-            )),
+        SizedBox(
+          height: 10,
+        ),
+        Image.network(
+          _feed['image'],
+          fit: BoxFit.cover,
+        ),
         Padding(
           padding: const EdgeInsets.only(left: 8.0, top: 8.0, right: 8.0),
           child: Text(
-            doc['text'],
+            _feed['text'],
             textAlign: TextAlign.left,
             style: TextStyle(
               fontSize: 14.0,

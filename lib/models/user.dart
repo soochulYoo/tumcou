@@ -10,12 +10,14 @@ class UserData {
   final String uid;
   final String name;
   final String grade;
-  final int xp;
   final String barcode;
-  final bool manager;
 
-  UserData(
-      {this.uid, this.name, this.grade, this.xp, this.barcode, this.manager});
+  UserData({
+    this.uid,
+    this.name,
+    this.grade,
+    this.barcode,
+  });
 }
 
 class BarcodeData {

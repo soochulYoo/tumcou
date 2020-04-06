@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   firebase_auth: ^0.15.3
   cloud_firestore: ^0.13.0+1
+  firebase_database: ^3.1.3
   firebase_storage: ^3.1.1
   provider: ^3.0.1
   flutter_spinkit: "^4.1.1"
@@ -70,6 +71,7 @@ flutter:
   - assets/
   - assets/icon/
   - assets/card/
+  - assets/self/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
